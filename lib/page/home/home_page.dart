@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                HomeWeatherIcon(nameIcon: data.weather[0].description),
+                HomeWeatherIcon(nameIcon: data.weather[0].main),
                 HomeTemperature(
                   temp: data.main.temp,
                 ),

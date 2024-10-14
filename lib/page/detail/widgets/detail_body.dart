@@ -10,7 +10,7 @@ class DetailBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(listData);
+    // print(listData);
     return ListView.separated(
       padding: const EdgeInsets.all(20),
       itemBuilder: (context, index) {
