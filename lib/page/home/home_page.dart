@@ -55,13 +55,18 @@ class _HomePageState extends State<HomePage> {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const HomeWeatherIcon(),
-                const HomeTemperature(),
-                HomeLocation(),
+                HomeWeatherIcon(nameIcon: data.weather[0].main),
+                HomeTemperature(
+                  temp: data.main.temp,
+                ),
+                HomeLocation(
+                  location: data.name,
+                ),
                 const SizedBox(
                   height: 40,
                 ),
-                const HomeDetailWeather(),
+                HomeDetailWeather(
+                    speedWind: data.wind.speed, humidity: data.main.humidity),
                 const SizedBox(
                   height: 100,
                 ),

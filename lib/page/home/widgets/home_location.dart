@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class HomeLocation extends StatelessWidget {
-  HomeLocation({super.key});
+  HomeLocation({super.key, required this.location});
 
   final df = DateFormat("dd-MM-yyyy");
+  final String location;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +22,9 @@ class HomeLocation extends StatelessWidget {
             const SizedBox(
               width: 5,
             ),
-            const Text(
-              "Ho Chi Minh City",
-              style: TextStyle(
+            Text(
+              location,
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 28,
               ),
