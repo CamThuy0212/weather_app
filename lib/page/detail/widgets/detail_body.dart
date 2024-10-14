@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app/apps/utils/const.dart';
+import 'package:weather_app/modules/weather.dart';
 
 class DetailBody extends StatelessWidget {
-  const DetailBody({super.key});
+  const DetailBody({super.key, required this.listData});
+
+  final List<WeatherDetail> listData;
 
   @override
   Widget build(BuildContext context) {
+    print(listData);
     return ListView.separated(
       padding: const EdgeInsets.all(20),
       itemBuilder: (context, index) {
+        DateTime dateTime = DateTime.parse(listData[index].dt_txt);
+        String formatDay = DateFormat('EEEE').format(dateTime);
+        String formatTime = DateFormat('HH:mm').format(dateTime);
+        print(listData[index].weather.description);
         return Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
@@ -23,13 +32,13 @@ class DetailBody extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        createTemp(30, size: 20),
+                        createTemp(listData[index].main.temp, size: 20),
                         const SizedBox(
                           width: 15,
                         ),
-                        const Text(
-                          "Cloudy",
-                          style: TextStyle(
+                        Text(
+                          listData[index].weather.main,
+                          style: const TextStyle(
                             color: Colors.white70,
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
@@ -40,9 +49,9 @@ class DetailBody extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text(
-                      "Monday",
-                      style: TextStyle(
+                    Text(
+                      formatDay,
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.blue,
                       ),
@@ -50,9 +59,9 @@ class DetailBody extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text(
-                      "19:00",
-                      style: TextStyle(
+                    Text(
+                      formatTime,
+                      style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -64,7 +73,7 @@ class DetailBody extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.sizeOf(context).width / 4,
                 child: Image.asset(
-                  AssetCustom.getLinkImg("Rain"),
+                  AssetCustom.getLinkImg(listData[index].weather.description),
                   fit: BoxFit.cover,
                 ),
               )

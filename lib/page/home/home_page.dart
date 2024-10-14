@@ -51,11 +51,11 @@ class _HomePageState extends State<HomePage> {
 
             WeatherData data = snapshot.data as WeatherData;
 
-            print(data.weather[0].main);
+            print("${data.weather[0].main} ${data.weather[0].description}");
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                HomeWeatherIcon(nameIcon: data.weather[0].main),
+                HomeWeatherIcon(nameIcon: data.weather[0].description),
                 HomeTemperature(
                   temp: data.main.temp,
                 ),
